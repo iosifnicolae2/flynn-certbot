@@ -79,7 +79,6 @@ echo "Generating certificate for domains..."
 echo "certbot certonly \
         --work-dir $CERTBOT_WORK_DIR \
         --config-dir $CERTBOT_CONFIG_DIR \
-        --logs-dir $CERTBOT_WORK_DIR/logs \
         --agree-tos \
         --no-eff-email \
         --dns-cloudflare \
@@ -90,7 +89,6 @@ echo "certbot certonly \
 certbot certonly \
   --work-dir "$CERTBOT_WORK_DIR" \
   --config-dir "$CERTBOT_CONFIG_DIR" \
-  --logs-dir "$CERTBOT_WORK_DIR/logs" \
   --agree-tos \
   --no-eff-email \
   --dns-cloudflare \
@@ -131,7 +129,6 @@ do
     certbot renew \
         --work-dir "$CERTBOT_WORK_DIR" \
         --config-dir "$CERTBOT_CONFIG_DIR" \
-        --logs-dir "$CERTBOT_WORK_DIR/logs"
 
     sleep 60
 done

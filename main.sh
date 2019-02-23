@@ -20,12 +20,12 @@ if [ -z "$DOMAINS" ]; then
 fi
 
 if [ -z "$CLOUDFLARE_EMAIL" ]; then
-    echo "$CLOUDFLARE_EMAIL must be set"
+    echo "CLOUDFLARE_EMAIL must be set"
     exit 1
 fi
 
 if [ -z "$LETS_ENCRYPT_EMAIL" ]; then
-    echo "$LETS_ENCRYPT_EMAIL must be set"
+    echo "LETS_ENCRYPT_EMAIL must be set"
     exit 1
 fi
 

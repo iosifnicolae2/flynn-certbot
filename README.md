@@ -1,4 +1,5 @@
-# Flynn Certbot
+# Flynn Certbot with Cloudflare support
+This repo was forked from https://github.com/nrempel/flynn-certbot.
 
 This tool can help you automatically issue and renew SSL certificates and secure Flynn routes for related domains. The tool uses [Let's Encrypt](https://letsencrypt.org) to generate certificates.
 

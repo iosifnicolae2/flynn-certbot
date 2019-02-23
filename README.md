@@ -26,51 +26,28 @@ Create a new Flynn app using this repository.
 
 `flynn create certbot`
 
+### Environment variables
 Set the following environment variables:
-
-### CERTBOT_DNS_PLUGIN 
-
-Only supports digitalocean right now.
-
-### DIGITAL_OCEAN_API_KEY
-
-Get one from [https://cloud.digitalocean.com/account/api/tokens](https://cloud.digitalocean.com/account/api/tokens)
-
-### DOMAINS
-
-A list of flynn app/domain pairs. Must be in the format <flynn app 1>:<valid route for flynn app 1>,<flynn app 2>:<valid route for flynn app 2>,...,n
-
-Example: DOMAINS=app1:app1.cluster.mydomain.com,app2:app2url.cluster.mydomain.com
-
-### EMAIL
-
-A valid email address for Let's Encrypt
-
-### FLYNN_CLUSTER_HOST
-
-Look in `flynn cluster`
-
-### FLYNN_CONTROLLER_KEY
-
-This can be obtained with:
-
-`flynn -a controller env get AUTH_KEY`
+CERTBOT_DNS_PLUGIN=cloudflare
+CLOUDFLARE_API_KEY=<paste_cloudflare_token>
+DOMAINS=example.your-domain.com
+CLOUDFLARE_EMAIL=<paste_cloudflare_email>
+FLYNN_CLUSTER_HOST=<cluster_domain_name>
+FLYNN_CONTROLLER_KEY=<controller_key>
+FLYNN_TLS_PIN=<check_above_script>
 
 
-### FLYNN_TLS_PIN
+#FLYNN_CONTROLLER_KEY
+# flynn -c <cluster_domain_name> -a controller env get AUTH_KEY
 
-This can be obtained with:
+# FLYNN_TLS_PIN
+#openssl s_client -connect controller.website.mailo.ml:443 \
+#  -servername controller.website.mailo.ml 2>/dev/null </dev/null \
+#  | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' \
+#  | openssl x509 -inform PEM -outform DER \
+#  | openssl dgst -binary -sha256 \
+#  | openssl base64
 
-```
-openssl s_client -connect controller.$CLUSTER_DOMAIN:443 \
-  -servername controller.$CLUSTER_DOMAIN 2>/dev/null </dev/null \
-  | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' \
-  | openssl x509 -inform PEM -outform DER \
-  | openssl dgst -binary -sha256 \
-  | openssl base64
-```
-
-Where $CLUSTER_DOMAIN is the domain for your cluster.
 
 
 Finally, when you're ready, push this repository to your flynn remote then scale it to 1 process (exactly).

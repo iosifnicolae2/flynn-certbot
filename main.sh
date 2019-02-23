@@ -24,6 +24,11 @@ if [ -z "$CLOUDFLARE_EMAIL" ]; then
     exit 1
 fi
 
+if [ -z "$LETS_ENCRYPT_EMAIL" ]; then
+    echo "$LETS_ENCRYPT_EMAIL must be set"
+    exit 1
+fi
+
 if [ -z "$FLYNN_CLUSTER_HOST" ]; then
     echo "FLYNN_CLUSTER_HOST must be set"
     exit 1
@@ -82,6 +87,7 @@ echo "certbot certonly \
         --logs-dir $CERTBOT_WORK_DIR/logs \
         --agree-tos \
         --no-eff-email \
+        --email $LETS_ENCRYPT_EMAIL \
         --dns-cloudflare \
         --dns-cloudflare-credentials $CLOUDFLARE_SECRET_PATH \
         --dns-cloudflare-propagation-seconds 60 \
@@ -93,6 +99,7 @@ certbot certonly \
   --logs-dir "$CERTBOT_WORK_DIR/logs" \
   --agree-tos \
   --no-eff-email \
+  --email $LETS_ENCRYPT_EMAIL \
   --dns-cloudflare \
   --dns-cloudflare-credentials $CLOUDFLARE_SECRET_PATH \
   --dns-cloudflare-propagation-seconds 60 \

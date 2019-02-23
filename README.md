@@ -38,21 +38,27 @@ FLYNN_CONTROLLER_KEY=<controller_key>
 FLYNN_TLS_PIN=<check_above_script>
 
 
-#FLYNN_CONTROLLER_KEY
-# flynn -c <cluster_domain_name> -a controller env get AUTH_KEY
+#### FLYNN_CONTROLLER_KEY
+```
+flynn -c <cluster_domain_name> -a controller env get AUTH_KEY
+```
 
-# FLYNN_TLS_PIN
-#openssl s_client -connect controller.website.mailo.ml:443 \
-#  -servername controller.website.mailo.ml 2>/dev/null </dev/null \
-#  | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' \
-#  | openssl x509 -inform PEM -outform DER \
-#  | openssl dgst -binary -sha256 \
-#  | openssl base64
+#### FLYNN_TLS_PIN
+```
+openssl s_client -connect controller.website.mailo.ml:443 \
+  -servername controller.website.mailo.ml 2>/dev/null </dev/null \
+  | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' \
+  | openssl x509 -inform PEM -outform DER \
+  | openssl dgst -binary -sha256 \
+  | openssl base64
+```
 
 
 
 Finally, when you're ready, push this repository to your flynn remote then scale it to 1 process (exactly).
-
+```
+git push flynn master
+```
 If everything goes well, all of the domains in `$DOMAINS` should now support https routes with a valid certificate!
 
 🍻

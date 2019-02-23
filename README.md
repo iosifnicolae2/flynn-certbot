@@ -45,8 +45,8 @@ flynn -c <cluster_domain_name> -a controller env get AUTH_KEY
 
 #### FLYNN_TLS_PIN
 ```
-openssl s_client -connect controller.website.mailo.ml:443 \
-  -servername controller.website.mailo.ml 2>/dev/null </dev/null \
+openssl s_client -connect controller.<cluster_domain_name>:443 \
+  -servername controller.<cluster_domain_name> 2>/dev/null </dev/null \
   | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' \
   | openssl x509 -inform PEM -outform DER \
   | openssl dgst -binary -sha256 \

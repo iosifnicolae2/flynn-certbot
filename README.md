@@ -28,6 +28,7 @@ Create a new Flynn app using this repository.
 `flynn create certbot`
 
 ### Environment variables
+```
 Set the following environment variables:
 CERTBOT_DNS_PLUGIN=cloudflare
 CLOUDFLARE_API_KEY=<paste_cloudflare_token>
@@ -36,7 +37,7 @@ CLOUDFLARE_EMAIL=<paste_cloudflare_email>
 FLYNN_CLUSTER_HOST=<cluster_domain_name>
 FLYNN_CONTROLLER_KEY=<controller_key>
 FLYNN_TLS_PIN=<check_above_script>
-
+```
 
 #### FLYNN_CONTROLLER_KEY
 ```
